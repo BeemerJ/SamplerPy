@@ -1,18 +1,19 @@
 import pyaudiowpatch as pyaudio
-import numpy as np
 import time
 import wave
 import datetime
+import keyboard
 
 
 # Variables
 
-duration = 5.0
+duration = None
 filename = f"sample_{datetime.datetime.now().strftime('%H-%M-%S')}.wav"
-    
+stop_recording = False
+
 
 # Create PyAudio instance via context manager.
-    
+
 if __name__ == "__main__":
     with pyaudio.PyAudio() as p: 
         try:
@@ -20,7 +21,6 @@ if __name__ == "__main__":
             wasapi_info = p.get_host_api_info_by_type(pyaudio.paWASAPI)
         except OSError:
             print("WASAPI is not available on the system. Exiting...")
-            stop()
             exit()
 
         
@@ -36,10 +36,9 @@ if __name__ == "__main__":
                     break
             else:
                 print("Default loopback output device not found.\nRun this to check available devices.\nExiting...\n")
-                stop()
                 exit()
                 
-        print(f"Recording from: {default_speakers['name']}")
+        print(f"Recording from: {default_speakers['name']}...")
         
         waveFile = wave.open(filename, 'wb')
         waveFile.setnchannels(default_speakers["maxInputChannels"])
@@ -58,7 +57,21 @@ if __name__ == "__main__":
                 input_device_index=default_speakers["index"],
                 stream_callback=callback
         ) as stream:
-            print(f'The next {duration} seconds will be written to "{filename}"')
-            time.sleep(duration) # Blocking execution while playing
+            print(f'Recording started. Press spacebar to stop and save the recording...')
+            start_time = time.monotonic()
+            while not stop_recording:
+                if keyboard.is_pressed(' '):
+                    stop_recording = True
+                elif duration and (time.monotonic() - start_time) >= duration:
+                    break
+                time.sleep(0.1)
         
         waveFile.close()
+        
+        if stop_recording:
+            print(f'Recording stopped. Sample saved as "{filename}"...')
+        else:
+            print(f'Recording finished. Sample saved as "{filename}"...')
+            
+        time.sleep(1)
+        
