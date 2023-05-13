@@ -1,4 +1,5 @@
 import pyaudiowpatch as pyaudio
+import os
 import time
 import wave
 import datetime
@@ -9,6 +10,9 @@ import keyboard
 
 duration = None
 filename = f"sample_{datetime.datetime.now().strftime('%H-%M-%S')}.wav"
+directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'output')
+os.makedirs(directory, exist_ok=True) 
+filepath = os.path.join(directory, filename)
 stop_recording = False
 
 
@@ -21,6 +25,7 @@ if __name__ == "__main__":
             wasapi_info = p.get_host_api_info_by_type(pyaudio.paWASAPI)
         except OSError:
             print("WASAPI is not available on the system. Exiting...")
+            time.sleep(2)
             exit()
 
         
@@ -40,7 +45,7 @@ if __name__ == "__main__":
                 
         print(f"Recording from: {default_speakers['name']}...")
         
-        waveFile = wave.open(filename, 'wb')
+        waveFile = wave.open(filepath, 'wb')
         waveFile.setnchannels(default_speakers["maxInputChannels"])
         waveFile.setsampwidth(pyaudio.get_sample_size(pyaudio.paInt16))
         waveFile.setframerate(int(default_speakers["defaultSampleRate"]))
