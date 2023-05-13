@@ -13,7 +13,7 @@ Windows, Python and some dependecies...
 
 Honestly, when you hear a cool sound, no-one wants to open Audacity and go through all that exporting La Di Da Di...
 
-So I made this :)
+So I made this :D
 
 ## How do I use this?
 
