@@ -1,6 +1,4 @@
 # SamplerPy ⏺️
-
-Desktop Audio Sampling Program
 ---
 
 ## What is it?
@@ -20,10 +18,11 @@ So I made this :)
 ## How do I use this?
 
 Open the program and it records what's playing, easy.  
-If it's not opening, run "install_dependancies.bat".
+
+> If it's not opening, run "install_dependancies.bat".
 
 ---
 
-Big Credits goes to [**s0d3s**](https://github.com/s0d3s/) for PyAudioWPatch <3
+Credits go to [**s0d3s**](https://github.com/s0d3s/) for PyAudioWPatch <3
 
 ---
