@@ -1,4 +1,6 @@
 # SamplerPy ⏺️
+
+![SamplerPy](MAIN.png)
 ---
 
 ## What is it?
