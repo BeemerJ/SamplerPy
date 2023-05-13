@@ -2,7 +2,7 @@ import pyaudiowpatch as pyaudio
 import numpy as np
 import time
 import wave
-import datetime as dt
+import datetime
 
 
 # Variables
