@@ -8,7 +8,7 @@ import datetime
 # Variables
 
 duration = 5.0
-filename = "sample_(datetime.datetime.now).wav"
+filename = f"sample_{datetime.datetime.now().strftime('%H-%M-%S')}.wav"
     
 
 # Create PyAudio instance via context manager.
@@ -39,7 +39,7 @@ if __name__ == "__main__":
                 stop()
                 exit()
                 
-        print(f"Recording from: ({default_speakers['index']}){default_speakers['name']}")
+        print(f"Recording from: {default_speakers['name']}")
         
         waveFile = wave.open(filename, 'wb')
         waveFile.setnchannels(default_speakers["maxInputChannels"])
@@ -58,7 +58,7 @@ if __name__ == "__main__":
                 input_device_index=default_speakers["index"],
                 stream_callback=callback
         ) as stream:
-            print(f"The next {duration} seconds will be written to {filename}")
+            print(f'The next {duration} seconds will be written to "{filename}"')
             time.sleep(duration) # Blocking execution while playing
         
         waveFile.close()

@@ -1,0 +1,16 @@
+@echo off
+
+echo Installing PyAudioWPatch...
+pip install pyaudiowpatch
+
+echo Installing NumPy...
+pip install numpy
+
+echo Installing wave...
+pip install Wave
+
+echo Installing datetime...
+pip install datetime
+
+echo Done...
+pause
