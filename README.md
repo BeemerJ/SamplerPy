@@ -1,11 +1,10 @@
-# SamplerPy ⏺️
+# PySampler ⏺️
 
-![SamplerPy](MAIN.png)
 ---
 
 ## What is it?
 
-SamplerPy is an application for Windows that uses WASAPI to record desktop audio with a press of a button.
+PySampler is an application for Windows that uses WASAPI to record desktop audio with a press of a button.
 
 ## What do you need?
 
